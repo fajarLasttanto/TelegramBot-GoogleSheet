@@ -10,7 +10,9 @@ function setCurrentUser($chatid, $username, $message_)
 				'contact' => "",
 				'reply1' => "",
 				'reply2' => "",
-				'reply3' => ""
+				'reply3' => "",
+				'reply4' => "",
+				'reply5' => ""
 				);
 
 	$currentUser_["chatId"] = $chatid;
@@ -39,20 +41,22 @@ function parseMessage1($currentUser_)
 
 function sendMessage($currentUser_)
 {
-	if ($currentUser_["reply1"]!="") {
-			send2Telegram($currentUser_["reply1"],$currentUser_);
+	$j = true;
+	for ($i=1;  $j ; $i++) { 
+		
+		if ($currentUser_["reply".$i]!="") {
+			send2Telegram($currentUser_["reply".$i],$currentUser_);
 		}
-	if ($currentUser_["reply2"]!="") {
-			send2Telegram($currentUser_["reply2"],$currentUser_);
+		else
+		{
+			$j=false;
 		}
-	if ($currentUser_["reply3"]!="") {
-			send2Telegram($currentUser_["reply3"],$currentUser_);
-		}	
+	}
 }
 
 function send2Telegram($message,$currentUser_)
 {
-	$token ="YourToken";
+	$token ="your token";
 	$URL="https://api.telegram.org/bot".$token;
 	$ch = curl_init($URL."/sendMessage"); 
     $postfield = "chat_id=".$currentUser_["chatId"]."&"."text=".$message;
