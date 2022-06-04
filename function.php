@@ -51,7 +51,7 @@ function sendMessage($currentUser_)
 
 function send2Telegram($message,$currentUser_)
 {
-	$token ="5240315186:AAFA9TGjcj8A0ZOKt4YQBzTkQjk3MtVMfEU";
+	$token ="your telegram bot token";
 	$URL="https://api.telegram.org/bot".$token;
 	$ch = curl_init($URL."/sendMessage"); 
     $postfield = "chat_id=".$currentUser_["chatId"]."&"."text=".$message;
