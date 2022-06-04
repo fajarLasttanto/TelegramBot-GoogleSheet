@@ -1,11 +1,11 @@
 <?php 
 
 $replyMessage = array(
-'main menu open' => "[MAIN MENU]\nSilahkan isi form berikut\n#nama :\n#contact :",
-'main menu close' => "Harap hanya masukan command diatas",
-'exit' => "/exit",
+'welcome' => "Selamat datang, ",
+'main menu' => "[MAIN MENU]\n\nSilahkan isi form berikut\n#nama :\n#contact :\n#\n\n/exit\n\nharap hanya masukan command diatas",
 'format tidak sesuai' => "Field tidak boleh kosong",
-'sukses' => "Sukses upload"
+'sukses' => "Sukses upload",
+'url gdrive' => "https://docs.google.com/spreadsheets/d/1gwTfFIcJ2j2Yt7FEWndOrf8CgB6Ka8bfDuGhalpefPQ/edit#gid=0"
 );
 
 

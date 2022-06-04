@@ -41,32 +41,41 @@ function parseMessage1($currentUser_)
 
 function sendMessage($currentUser_)
 {
-	$j = true;
-	for ($i=1;  $j ; $i++) { 
+	for ($i=1;  $i<=5 ; $i++) { 
 		
 		if ($currentUser_["reply".$i]!="") {
 			send2Telegram($currentUser_["reply".$i],$currentUser_);
-		}
-		else
-		{
-			$j=false;
 		}
 	}
 }
 
 function send2Telegram($message,$currentUser_)
 {
-	$token ="your token";
+	$token ="5240315186:AAFA9TGjcj8A0ZOKt4YQBzTkQjk3MtVMfEU";
 	$URL="https://api.telegram.org/bot".$token;
 	$ch = curl_init($URL."/sendMessage"); 
     $postfield = "chat_id=".$currentUser_["chatId"]."&"."text=".$message;
+    postRequest($postfield,$ch);      
+}
+
+function googleAPI($currentUser_)
+{
+	$ch = curl_init("https://fajarlasttanto.space/telegram-service/google-sheet-api/google-upload.php");
+    $currentUser_ = array('currentUser'=> $currentUser_);
+    $postfield = http_build_query($currentUser_);
+  	return postRequest($postfield,$ch);
+}
+
+function postRequest($postfield,$ch)
+{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
     curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postfield);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
     $output = curl_exec($ch); 
-    curl_close($ch);      
+    curl_close($ch);
+    return $output;
 }
 
  ?>
